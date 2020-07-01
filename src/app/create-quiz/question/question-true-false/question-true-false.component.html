@@ -1,0 +1,57 @@
+<h3>True or false</h3>
+
+<form>
+
+    <div>
+        <label>
+            What is the question?
+        </label>
+        <br>
+        <textarea rows="2" class="col-md-12 form-control" #questionText></textarea>
+    
+        <br>
+    </div>
+
+    <br/>
+
+    <br/>
+
+    <br />
+
+    <div class="row">
+        <div class="col-xs-6">
+            <label>Is it true or false?</label>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="form-group-row">
+        <div class="col-xs-4">
+            <label class="col-xs-4 col-form-label">True</label>
+            <div class="col-xs-1">
+                <button class="btn" 
+                        [ngClass]="{'btn-success':correctAnswerIndex === 1}" 
+                        (click)='isCorrectAnswer(1);$event.preventDefault()'>&#x2714;</button>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <label class="col-xs-4 col-form-label">False</label>
+            <div class="col-xs-1">
+                <button class="btn" 
+                        [ngClass]="{'btn-success':correctAnswerIndex === 2}" 
+                        (click)='isCorrectAnswer(2);$event.preventDefault()'>&#x2714;</button>
+            </div>
+        </div>
+    </div>
+
+    <br/>
+
+    <br/>
+
+    
+    <button id="save-question-btn" 
+            type="submit" 
+            class="btn btn-primary btn-lg"
+            (click)="addQuestion()">Save question</button>
+</form>

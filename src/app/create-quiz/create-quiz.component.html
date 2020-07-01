@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="container-fluid">
+        
+        <div *ngIf="questions?.length > 0">
+            <button class="btn btn-lg btn-primary" 
+                    (click)="hideCreateView()">
+                    Play quiz
+            </button>
+        </div>
+
+        <div class="col-xs-6">
+            <div *ngIf="addRoundButtonClicked === true" class="row">
+                <div class="col-xs-1">
+                    <label>Name:</label>
+                </div>
+                <div class="col-xs-7">
+                    <input type='text'
+                           class="form-control"
+                           #roundNameRef>
+                </div>
+                <button class="btn btn-primary btn-md" (click)="addNewRound(); round + 1">Save</button>
+            </div>
+            <br/>
+            <div>
+                <div class="round-border" *ngFor="let round of rounds">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <h3>Round: {{round.roundId}}</h3>
+                        </div>
+                        <div class="col-xs-4">
+                            <h3> {{round.roundName}}</h3>
+                        </div>
+                        <div class="col-xs-4">
+                            <button class="btn" 
+                                    (click)="showNewQuestionComponent = true;updateCurrentRoundId(round.roundId)">
+                                    Add question +
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-7">
+                                <button class="btn" type="button" (click)="round.showQuestions = true">
+                                    <span class="caret"></span></button>
+                                <button class="btn" type="button"  (click)="round.showQuestions = false">
+                                    <span class="dropup"><span class="caret"></span></span></button>
+                                    <div *ngIf="round.showQuestions == true">
+                                        <ul class="" 
+                                            *ngFor="let question of questions">
+                                                <li *ngIf="question.roundNumber === round.roundId">
+                                                    <a href="#">{{question.questionString}}</a>
+                                                </li>
+                                        </ul>
+                                    </div>
+                             
+                        </div>   
+                        </div>
+                </div>
+                </div>
+            <div>
+                <button id="save-question-btn" 
+                        type="submit" 
+                        class="btn btn-primary btn-lg"
+                        (click)="addRoundButtonClicked = true">Add round</button>
+            </div>
+        </div>
+        <div class="col-xs-5" *ngIf="showNewQuestionComponent === true">
+            <app-question></app-question>
+        </div>
+
+    </div>
+</div>

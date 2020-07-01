@@ -1,0 +1,15 @@
+.correctAnswer{
+    background: #4DBC57;
+}
+
+.wrongAnswer{
+    background: #EF3D1D;
+}
+
+.row-styling{
+    border-top: #AEA9A8 solid 1px;
+}
+
+.button-area{
+    margin: 10px;
+}

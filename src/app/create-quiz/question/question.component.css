@@ -1,0 +1,12 @@
+h2{
+    color: #1EA2BD;
+}
+
+li{
+    list-style-type: none;
+}
+
+.question-type:hover{
+    background-color: rgb(230, 246, 252);
+}
+

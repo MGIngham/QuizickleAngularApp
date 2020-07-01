@@ -1,0 +1,15 @@
+textarea, label{
+    font-size: large;
+}
+
+label{
+    color: rgb(5, 106, 126);
+}
+
+#save-question-btn{
+    float: right;
+}
+
+
+
+

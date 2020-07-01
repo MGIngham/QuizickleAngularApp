@@ -1,0 +1,45 @@
+<ng-container *ngFor="let question of questionsArray; let index = i">
+        <ng-container *ngIf="question.questionNumber == currentQuestionId">
+                <p>{{question.questionString}}</p>
+                <ng-container [ngSwitch]="question.questionTypeId">
+                        <ng-container *ngSwitchCase=1>
+                                <input type="radio" value=1
+                                        (click)="moveToNextQuestion();addAnswer(question.roundNumber,question.questionNumber,1,question.questionTypeId,question.correctAnswerIndex)"> {{question.optionOne}}
+                                <br/>
+                                <input type="radio" value=2
+                                        (click)="moveToNextQuestion();addAnswer(question.roundNumber,question.questionNumber,2,question.questionTypeId,question.correctAnswerIndex)"> {{question.optionTwo}}
+                                <br/>
+                                <input type="radio" value=3
+                                        (click)="moveToNextQuestion();addAnswer(question.roundNumber,question.questionNumber,3,question.questionTypeId,question.correctAnswerIndex)"> {{question.optionThree}}
+                                <br/>
+                                <input type="radio" value=4
+                                        (click)="moveToNextQuestion();addAnswer(question.roundNumber,question.questionNumber,4,question.questionTypeId,question.correctAnswerIndex)"> {{question.optionFour}}
+                        </ng-container>
+                        <ng-container *ngSwitchCase=2 class="row">
+                                <div class="col-xs-2">
+                                        <button class="btn btn-primary btn-lg"
+                                                (click)="moveToNextQuestion();addAnswer(question.roundNumber,question.questionNumber,1,question.questionTypeId,question.correctAnswerIndex)">
+                                                True</button>
+                                </div>
+                                <div class="col-xs-2">
+                                        <button class="btn btn-primary btn-lg"
+                                                (click)="moveToNextQuestion();addAnswer(question.roundNumber,question.questionNumber,2,question.questionTypeId,question.correctAnswerIndex)">
+                                                False</button>
+                                </div>       
+                        </ng-container>
+                        <ng-container *ngSwitchCase=3>
+                                <input type="text" #answerText>
+                                <button class="btn btn-primary btn-submit"
+                                        (click)="moveToNextQuestion();addAnswer(question.roundNumber,question.questionNumber,1,question.questionTypeId,0,question.answerString)"
+                                        >Next</button>
+                        </ng-container>
+                </ng-container>
+        </ng-container>
+</ng-container>
+
+<div *ngIf="currentQuestionId == maxNumberOfQuestion">
+        <app-display-answers></app-display-answers>
+        <h1>FISH</h1>
+</div>
+
+

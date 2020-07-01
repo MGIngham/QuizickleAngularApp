@@ -1,0 +1,107 @@
+<h3>Multiple choice</h3>
+
+<form>
+
+    <div>
+        <label>
+            What is the question?
+        </label>
+        <br>
+        <textarea rows="2" class="col-md-12 form-control" #question></textarea>
+    
+        <br>
+    </div>
+
+    <br/>
+
+    <br/>
+
+    <br />
+
+    <div class="row">
+        <div class="col-xs-11">
+
+        </div>
+        <div class="col-xs-1">
+            <label>Correct answer</label>
+        </div>
+    </div>
+
+    <div class="form-group-row">
+        <label class="col-xs-2 col-form-label">Option 1.</label>
+        <div class="col-xs-9">
+            <input type='text' class="form-control" #optOne>
+        </div>
+        <div class="col-xs-1">
+            <button class="btn" 
+                    [ngClass]="{'btn-success':correctAnswerIndex === 1}" 
+                    (click)='isCorrectAnswer(1);$event.preventDefault()'
+                    value=1
+                    tabindex="-1">&#x2714;</button>
+        </div>
+    </div>
+
+    <br/>
+
+    <br/>
+
+    <br />
+
+    <div class="form-group-row">
+        <label class="col-md-2 col-form-label">Option 2.</label>
+        <div class="col-md-9">
+            <input type='text' class="form-control" #optTwo>
+        </div>
+        <div class="col-xs-1">
+            <button class="btn" 
+                    [ngClass]="{'btn-success':correctAnswerIndex === 2}" 
+                    (click)='isCorrectAnswer(2);$event.preventDefault()'
+                    tabindex="-1">&#x2714;</button>
+        </div>
+    </div>
+
+    <br/>
+
+    <br/>
+
+    <br />
+
+    <div class="form-group-row">
+        <label class="col-md-2 col-form-label">Option 3.</label>
+        <div class="col-md-9">
+            <input type='text' class="form-control" #optThree>
+        </div>
+        <div class="col-xs-1">
+            <button class="btn" 
+                    [ngClass]="{'btn-success':correctAnswerIndex === 3}" 
+                    (click)='isCorrectAnswer(3);$event.preventDefault()'
+                    tabindex="-1">&#x2714;</button>
+        </div>
+    </div>
+
+    <br/>
+    <br/>
+    <br />
+
+    <div class="form-group-row">
+        <label class="col-md-2 col-form-label">Option 4.</label>
+        <div class="col-md-9">
+            <input type='text' class="form-control" #optFour>
+        </div>
+        <div class="col-xs-1">
+            <button class="btn" 
+                    [ngClass]="{'btn-success':correctAnswerIndex === 4}" 
+                    (click)='isCorrectAnswer(4);$event.preventDefault()'
+                    tabindex="-1">&#x2714;</button>
+        </div>
+    </div>
+
+    <br/>
+    <br/>
+    <br />
+
+    <button id="save-question-btn" 
+            type="submit" 
+            class="btn btn-primary btn-lg" 
+            (click)="addQuestion();$event.preventDefault()">Save question</button>
+</form>

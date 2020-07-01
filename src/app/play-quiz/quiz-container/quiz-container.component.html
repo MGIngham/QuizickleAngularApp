@@ -1,0 +1,31 @@
+<div *ngIf="playQuiz">
+
+    <div *ngIf="startQuiz">
+        <div class="form-group-row">
+            <label class="col-xs-2 col-form-label">Player name:</label>
+            <div class="col-xs-4">
+                <input type='text' class="form-control">
+            </div>
+
+            <button id="save-question-btn" 
+                    type="submit" 
+                    class="btn btn-primary btn-lg"
+                    (click)="startQuiz = false">
+                    Start quiz
+                </button>
+            
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+
+    </div>
+    <div class="col-lg-8 container">
+        <app-play-question></app-play-question>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+
+</div>
+

@@ -1,0 +1,20 @@
+<h2>New Question</h2>
+<br>
+
+<div *ngIf='questionTypeSelectedValue === 0'>
+    <h3 class="list-group-item-heading">What kind of question would you like?</h3>
+
+    <ul class="list-group">
+        <li><a class="list-group-item question-type" (click)='questionTypeSelectedValue = 1'>Multiple choice</a></li>
+        <li><a class="list-group-item question-type" (click)='questionTypeSelectedValue = 2'>True or false</a></li>
+        <li><a class="list-group-item question-type" (click)='questionTypeSelectedValue = 3'>Bog standard</a></li>
+    </ul>
+</div>
+
+<div [ngSwitch]='questionTypeSelectedValue'>
+    <button *ngIf='questionTypeSelectedValue > 0' (click)='questionTypeSelectedValue = 0;$event.stopPropagation()' href="#" class="btn btn-lg">&#8249; Back</button>
+    <app-question-multiple-choice *ngSwitchCase=1></app-question-multiple-choice>
+    <app-question-true-false *ngSwitchCase=2></app-question-true-false>
+    <app-question-bog-standard *ngSwitchCase=3></app-question-bog-standard>  
+</div>
+

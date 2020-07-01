@@ -1,0 +1,37 @@
+<h3>Score: {{ points }}</h3>
+<br>
+<div>
+    <div *ngFor="let a of questionAndAnswerArray" class="row">
+        <div class="col-xs-6 row-styling">
+            <div *ngIf="a.questionTypeId == 1">
+                <h4>{{ a.questionNumber }}. {{ a.questionString }}</h4>
+                <ul>
+                    <li [ngClass]="{'correctAnswer': a.correctAnswerIndex == 1,
+                                    'wrongAnswer': a.selectedAnswerIndex == 1 && a.selectedAnswerIndex != a.correctAnswerIndex}">{{ a.oOne }}</li>
+                    <li [ngClass]="{'correctAnswer': a.correctAnswerIndex == 2,
+                                    'wrongAnswer': a.selectedAnswerIndex == 2 && a.selectedAnswerIndex != a.correctAnswerIndex}">{{ a.oTwo }}</li>
+                    <li [ngClass]="{'correctAnswer': a.correctAnswerIndex == 3,
+                                    'wrongAnswer': a.selectedAnswerIndex == 3 && a.selectedAnswerIndex != a.correctAnswerIndex}">{{ a.oThree }}</li>
+                    <li [ngClass]="{'correctAnswer': a.correctAnswerIndex == 4,
+                                    'wrongAnswer': a.selectedAnswerIndex == 4 && a.selectedAnswerIndex != a.correctAnswerIndex}">{{ a.oFour }}</li>
+                </ul>
+            </div>
+            <div *ngIf="a.questionTypeId == 2">
+                <h4>{{ a.questionNumber }}. {{ a.questionString }}</h4>
+                <ul>
+                    <li [ngClass]="{'correctAnswer': a.correctAnswerIndex == 1,
+                    'wrongAnswer': a.selectedAnswerIndex == 1 && a.selectedAnswerIndex != a.correctAnswerIndex}">True</li>
+                    <li [ngClass]="{'correctAnswer': a.correctAnswerIndex == 2,
+                    'wrongAnswer': a.selectedAnswerIndex == 2 && a.selectedAnswerIndex != a.correctAnswerIndex}">False</li>
+                </ul>
+            </div>
+            <div *ngIf="a.questionTypeId == 3">
+                <h4>{{ a.questionNumbr }}. {{ a.questionString }}</h4>
+                <span>Answer: {{ a.answerString }}</span>
+                <br/>
+                <span>You answered: {{ a.inputAnswerString }}</span>
+            </div>
+        </div>
+        </div>
+        <br/>
+</div>
