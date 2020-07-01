@@ -39,7 +39,8 @@ export class DisplayAnswersComponent implements OnInit {
       (questions: Question[]) => {
         this.questions = questions;
         this.answers = this.answerService.answers;
-        this.displayAnswersAndQuestions();    
+        this.displayAnswersAndQuestions();   
+        //Commit test 
       }
     );
   }
