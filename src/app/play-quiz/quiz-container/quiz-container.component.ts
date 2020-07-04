@@ -9,7 +9,6 @@ import { QuestionsService } from 'src/app/shared/questions.service';
 })
 export class QuizContainerComponent implements OnInit {
 
-  @Input() playQuiz: boolean;
   startQuiz: boolean = true;
   currentQuestionId: number;
 

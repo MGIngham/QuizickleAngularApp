@@ -29,8 +29,6 @@ export class CreateQuizComponent implements OnInit {
     questions: Question[];
     enablePlayButton: boolean = true;
     
-    @Output() hideView: EventEmitter<any> = new EventEmitter();
-
     currentRoundNum: number;
 
     @ViewChild('roundNameRef') roundNameInput: ElementRef;
@@ -84,10 +82,6 @@ export class CreateQuizComponent implements OnInit {
 
     expandQuestionsForRound(show: Round){
         show.showQuestions != show.showQuestions;;
-    }
-
-    hideCreateView(){
-        this.hideView.emit(null);
     }
 
 

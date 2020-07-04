@@ -9,5 +9,4 @@ import { QuestionsService } from './shared/questions.service';
 })
 export class AppComponent {
   title = 'quizickle';
-  showQuizContainer: boolean = false;
 }

@@ -4,12 +4,15 @@
         <br/>
 
         <!--Play quiz components-->
-        <app-quiz-container [playQuiz]="showQuizContainer">
-        </app-quiz-container>
+       <!-- <app-quiz-container [playQuiz]="showQuizContainer">
+        </app-quiz-container>-->
 
-        <!--Create quiz components-->
-        <div *ngIf="!showQuizContainer">
-                <app-add-new-quiz></app-add-new-quiz>
-                <app-create-quiz (hideView)="showQuizContainer = true"></app-create-quiz>
+        <router-outlet></router-outlet>
+
+        <div class="col-xs-6">
+                <a routerLink="/create-quiz"><button>Create quiz</button></a>
+        </div>
+        <div class="col-xs-6">
+                <a routerLink="/play-quiz"><button>Play quiz</button></a>
         </div>
 </div>

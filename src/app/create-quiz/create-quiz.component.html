@@ -1,11 +1,12 @@
+<app-add-new-quiz></app-add-new-quiz>
+
 <div class="row">
     <div class="container-fluid">
         
         <div *ngIf="questions?.length > 0">
-            <button class="btn btn-lg btn-primary" 
-                    (click)="hideCreateView()">
-                    Play quiz
-            </button>
+            <a routerLink="/play-quiz">
+                <button class="btn btn-lg btn-primary">Play quiz</button>
+            </a>
         </div>
 
         <div class="col-xs-6">
