@@ -1,6 +1,27 @@
 <!--Currently creates a new quiz, this will become a component.-->
-<div>
-    <label>New quiz name: </label>
-    <input type="text" #quizNameInput>
-    <button class="btn btn-primary" (click)="addNewQuiz()">Create quiz</button>
+<div class="row">
+    <div class="col-xs-9">
+        <div class="row">
+            <div class="col-xs-5">
+                <label>Quiz name:</label>
+                <input type="text" #quizNameInput>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-5">
+                <br/>
+                <label>Background colour:</label>
+                <a (click)="colourPickerSelected = true"><img alt="colour-picker-icon" src="/src/assets/images/icons8-color-wheel-40.png"></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <br/>
+    <div class="col-xs-2">
+        <a routerLink="/create-quiz"><button class="btn btn-primary" (click)="addNewQuiz()">Create quiz</button></a>
+    </div>
+    <div *ngIf="colourPickerSelected">
+        <app-colour-picker></app-colour-picker>
+    </div>
 </div>

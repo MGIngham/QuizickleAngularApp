@@ -21,11 +21,15 @@ import { QuestionsService } from './shared/questions.service';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { AnswerService } from './shared/answer.service';
 import { QuizService } from './shared/quiz.service';
+import { HomeComponent } from './home/home.component';
+import { ColourPickerComponent } from './create-quiz/colour-picker/colour-picker.component';
 
  
 const appRoutes: Routes = [
+  {path: '', component: HomeComponent},
+  {path: 'new-quiz', component: AddNewQuizComponent},
   {path: 'create-quiz', component: CreateQuizComponent},
-  {path: 'play-quiz', component: QuizContainerComponent},
+  {path: 'play-quiz', component: QuizContainerComponent}
 ]
 
 @NgModule({
@@ -42,7 +46,9 @@ const appRoutes: Routes = [
     QuizContainerComponent,
     PlayQuestionComponent,
     DisplayAnswersComponent,
-    AddNewQuizComponent
+    AddNewQuizComponent,
+    HomeComponent,
+    ColourPickerComponent
   ],
   imports: [
     BrowserModule,

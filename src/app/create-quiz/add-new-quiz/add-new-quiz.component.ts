@@ -9,6 +9,7 @@ import { Quiz } from 'src/app/shared/quiz.model';
 })
 export class AddNewQuizComponent implements OnInit {
 
+  colourPickerSelected: boolean = false;
   quiz: Quiz;
   @ViewChild('quizNameInput') quizNameInput: ElementRef;
 

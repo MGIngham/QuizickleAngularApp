@@ -14,6 +14,7 @@ export class QuizService {
     quiz: Quiz;
     quizReference = new EventEmitter<Quiz>();
     quizIdReference = new EventEmitter<number>();
+    backgroundColour: string;
 
     quizickleAppUrl: string;
     quizickleServiceApiUrl: string;
@@ -30,7 +31,7 @@ export class QuizService {
     addQuiz(name: string){
 
         let quizId: number; 
-        this.quiz = new Quiz(name);
+        this.quiz = new Quiz(name, this.backgroundColour);
         this.saveQuiz(this.quiz).subscribe(
           res => {
             console.log(res["quizId"]);

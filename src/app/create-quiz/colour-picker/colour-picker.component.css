@@ -1,0 +1,44 @@
+.colour-picker-container{
+    border: 1px solid #b9b9b9;
+    height: 200px;
+}
+
+.colour-picker-row{
+    height: 100px;
+}
+
+.colour-cell{
+    position: relative;
+    height: 100px;
+}
+
+.colour-block{
+    width: 90%;
+    height: 80px;
+    margin: auto;
+    margin-top: 10px;
+}
+
+#colour1{
+    background-color: lightcoral;
+}
+
+#colour2{
+    background-color: rgb(128, 208, 240);
+}
+
+#colour3{
+    background-color: lightgreen;
+}
+
+#colour4{
+    background-color: rgb(79, 223, 204);
+}
+
+#colour5{
+    background-color: rgb(214, 128, 240);
+}
+
+#colour6{
+    background-color: rgb(240, 232, 128);
+}

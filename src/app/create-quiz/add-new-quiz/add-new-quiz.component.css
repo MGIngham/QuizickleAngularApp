@@ -1,0 +1,10 @@
+button{
+    background-color: #ffffff;
+    color: #1EA2BD;
+    font-size: large;
+}
+
+label{
+    padding-right: 15px;
+    color: rgb(5, 106, 126);
+}

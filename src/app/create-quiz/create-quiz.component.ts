@@ -28,6 +28,7 @@ export class CreateQuizComponent implements OnInit {
     rounds: Round[];
     questions: Question[];
     enablePlayButton: boolean = true;
+    showAddRounds = false;
     
     currentRoundNum: number;
 
