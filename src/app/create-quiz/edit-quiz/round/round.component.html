@@ -1,9 +1,49 @@
-<div class="row">
-    <ul class="list-group">
-        <li class="list-group-item" *ngFor="let q of questionsIndex">
-            <span class="col-xs-2">{{q}}.</span>
-            <span>this is a question</span>
-        </li>
-    </ul>
-</div>
+<div>
+    <div class="round-border" *ngFor="let round of rounds">
+        <div class="row">
+            <div class="col-xs-3">
+                <label>Round: {{round.roundId}}</label>
+            </div>
+            <div class="col-xs-5">
+                <div class="row">
+                    <div class="col-xs-8 round-header-item">
+                        <input type='text'
+                                class="form-control"
+                                placeholder="Round name"
+                                #roundNameRef>
+                    </div>
+                    <div class="col-xs-4 round-header-item">
+                        <button class="btn"
+                               (click)="updateRoundName(round.roundId)">
+                               S
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3">
+                <button class="btn" 
+                        (click)="showQuestionComponent()">
+                        Add question +
+                </button>
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-7">
+                    <button class="btn" type="button" (click)="round.showQuestions = true">
+                        <span class="caret"></span></button>
+                    <button class="btn" type="button"  (click)="round.showQuestions = false">
+                        <span class="dropup"><span class="caret"></span></span></button>
+                        <div>
+                            <ul class="" 
+                                *ngFor="let question of questions">
+                                    <li *ngIf="question.roundNumber === round.roundId">
+                                        <a href="#">{{question.questionString}}</a>
+                                    </li>
+                            </ul>
+                        </div>
+                 
+            </div>   
+    </div>
+<div>
 

@@ -70,11 +70,16 @@ export class QuestionsService {
         this.questionsReferenceArray.emit(this.questions.slice());
     }
 
-    addRound(r: Round){
+    addRound(){
+        let r: Round;
         this.roundNumber = this.roundNumber += 1;
-        r.roundId = this.roundNumber;
+        r = new Round(this.roundNumber, "");
         this.rounds.push(r);
         this.roundsReferenceArray.emit(this.rounds.slice());
+    }
+
+    nameRound(id: number, name: string){
+      this.rounds[id].roundName = name;
     }
 
     getNextQuestion(){
