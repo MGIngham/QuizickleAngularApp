@@ -1,9 +1,9 @@
 import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { QuestionsService } from 'src/app/shared/questions.service';
-import { Question } from 'src/app/shared/question.model';
-import { Round } from 'src/app/shared/round.model';
-import { AnswerService } from 'src/app/shared/answer.service';
-import { Answer } from 'src/app/shared/answer.model';
+import { QuestionsService } from 'src/app/shared/services/questions.service';
+import { Question } from 'src/app/shared/models/question.model';
+import { Round } from 'src/app/shared/models/round.model';
+import { AnswerService } from 'src/app/shared/services/answer.service';
+import { Answer } from 'src/app/shared/models/answer.model';
 import { Observable } from 'rxjs';
 import { Console } from 'console';
 

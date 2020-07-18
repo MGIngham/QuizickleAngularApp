@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { QuizService } from 'src/app/shared/quiz.service';
-import { Quiz } from 'src/app/shared/quiz.model';
+import { QuizService } from 'src/app/shared/services/quiz.service';
+import { Quiz } from 'src/app/shared/models/quiz.model';
 
 @Component({
   selector: 'app-add-new-quiz',

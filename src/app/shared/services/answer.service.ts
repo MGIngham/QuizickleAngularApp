@@ -1,7 +1,7 @@
 import { EventEmitter } from '@angular/core';
-import { Answer } from './answer.model';
-import { QuestionsWithAnswers } from './questions-with-answers';
-import { Question } from './question.model';
+import { Answer } from '../models/answer.model';
+import { QuestionsWithAnswers } from '../models/questions-with-answers.model';
+import { Question } from '../models/question.model';
 
 export class AnswerService {
 

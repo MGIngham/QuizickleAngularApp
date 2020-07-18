@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AnswerService } from 'src/app/shared/answer.service';
-import { QuestionsService } from 'src/app/shared/questions.service';
-import { Answer } from 'src/app/shared/answer.model';
-import { Question } from 'src/app/shared/question.model';
-import { QuestionsWithAnswers } from 'src/app/shared/questions-with-answers';
+import { AnswerService } from 'src/app/shared/services/answer.service';
+import { QuestionsService } from 'src/app/shared/services/questions.service';
+import { Answer } from 'src/app/shared/models/answer.model';
+import { Question } from 'src/app/shared/models/question.model';
+import { QuestionsWithAnswers } from 'src/app/shared/models/questions-with-answers.model';
 import { Observable } from 'rxjs';
 
 @Component({

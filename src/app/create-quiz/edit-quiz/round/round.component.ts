@@ -1,7 +1,8 @@
 import { Component, OnInit, EventEmitter, Output, Input, ViewChild, ElementRef } from '@angular/core';
-import { QuestionsService } from 'src/app/shared/questions.service';
-import { Question } from 'src/app/shared/question.model';
-import { Round } from 'src/app/shared/round.model';
+import { QuestionsService } from 'src/app/shared/services/questions.service';
+import { Question } from 'src/app/shared/models/question.model';
+import { Round } from 'src/app/shared/models/round.model';
+import { RoundService } from 'src/app/shared/services/round.service';
 
 @Component({
   selector: 'app-round',
@@ -22,13 +23,14 @@ export class RoundComponent implements OnInit {
 
   @Output() emitShowQuestionComponent = new EventEmitter<boolean>();
 
-  @ViewChild('roundNameRef') roundNameInput: ElementRef;
+  roundNameInput: string[] = [];
 
   //Maybe
   currentRoundNum: number;
   thisRoundId: number;
 
-  constructor(private questionService: QuestionsService) { }
+  constructor(private questionService: QuestionsService,
+    private roundService: RoundService) { }
 
   ngOnInit() {
 
@@ -39,7 +41,7 @@ export class RoundComponent implements OnInit {
         }
     );
 
-    this.questionService.roundsReferenceArray
+    this.roundService.roundsReferenceArray
     .subscribe(
         (rounds: Round[]) => {
             this.rounds = rounds;
@@ -53,23 +55,27 @@ export class RoundComponent implements OnInit {
       }
     )
 
-    this.questionService.addRound();
+    this.roundService.addRound();
+    this.roundService.showQuestionComponent.emit(true);    
 
   }
 
   updateRoundName(id: number){
 
-    let name = this.roundNameInput.nativeElement.value;
+    let name = this.roundNameInput[id];
+    let roundId = id;
 
-    this.questionService.nameRound(id, name);
+    this.roundService.nameRound(roundId, name);
 
   }
 
   showQuestionComponent(){
+    this.roundService.showQuestionComponent.emit(true);    
+  }
 
-    let show = this.showNewQuestionComponent = true;
-    this.emitShowQuestionComponent.emit(show);
-    
+  updateCurrentRoundId(id: number){
+    let currentRoundId = id;
+    this.questionService.currentRoundId = currentRoundId;
   }
 
 

@@ -1,4 +1,4 @@
-import { Quiz } from './quiz.model';
+import { Quiz } from '../models/quiz.model';
 import { EventEmitter, Injectable } from '@angular/core';
 import { retry, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';

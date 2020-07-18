@@ -17,12 +17,13 @@ import { PlayQuestionComponent } from './play-quiz/quiz-container/play-question/
 import { DisplayAnswersComponent } from './play-quiz/display-answers/display-answers.component';
 import { AddNewQuizComponent } from './create-quiz/add-new-quiz/add-new-quiz.component';
 
-import { QuestionsService } from './shared/questions.service';
+import { QuestionsService } from './shared/services/questions.service';
 import { DropdownDirective } from './shared/dropdown.directive';
-import { AnswerService } from './shared/answer.service';
-import { QuizService } from './shared/quiz.service';
+import { AnswerService } from './shared/services/answer.service';
+import { QuizService } from './shared/services/quiz.service';
 import { HomeComponent } from './home/home.component';
 import { ColourPickerComponent } from './create-quiz/colour-picker/colour-picker.component';
+import { RoundService } from './shared/services/round.service';
 
  
 const appRoutes: Routes = [
@@ -57,7 +58,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
-    QuestionsService,AnswerService,QuizService],
+    QuestionsService,AnswerService,QuizService,RoundService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
-import { Question } from 'src/app/shared/question.model';
-import { QuestionsService } from 'src/app/shared/questions.service';
+import { Question } from 'src/app/shared/models/question.model';
+import { QuestionsService } from 'src/app/shared/services/questions.service';
 
 @Component({
     selector: 'app-question-multiple-choice',

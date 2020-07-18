@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef, Output } from '@angular/core';
-import { QuestionsService } from '../shared/questions.service';
-import { Round } from '../shared/round.model';
-import { Question } from '../shared/question.model';
+import { QuestionsService } from '../shared/services/questions.service';
+import { Round } from '../shared/models/round.model';
+import { Question } from '../shared/models/question.model';
 import { EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
-import { QuizService } from '../shared/quiz.service';
-import { Quiz } from '../shared/quiz.model';
+import { QuizService } from '../shared/services/quiz.service';
+import { Quiz } from '../shared/models/quiz.model';
+import { RoundService } from '../shared/services/round.service';
 
 @Component({
     selector: 'app-create-quiz',
@@ -19,7 +20,9 @@ export class CreateQuizComponent implements OnInit {
     enablePlayButton: boolean = true;
     showNewQuestionComponent: boolean;
 
-    constructor(private questionService: QuestionsService, private quizService: QuizService){}
+    constructor(private questionService: QuestionsService, 
+        private quizService: QuizService,
+        private roundService: RoundService){}
 
     ngOnInit(){
 
@@ -29,6 +32,13 @@ export class CreateQuizComponent implements OnInit {
                 this.questions = questions;
             }
         );
+
+        this.roundService.showQuestionComponent
+        .subscribe(
+            (show: boolean) => {
+                this.showNewQuestionComponent = show;
+            }
+        )
 
     }
 
@@ -41,7 +51,7 @@ export class CreateQuizComponent implements OnInit {
     }
 
     addNewRound(){
-        this.questionService.addRound();
+        this.roundService.addRound();
     }
 
 

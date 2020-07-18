@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { QuestionsService } from 'src/app/shared/questions.service';
-import { Question } from 'src/app/shared/question.model';
+import { QuestionsService } from 'src/app/shared/services/questions.service';
+import { Question } from 'src/app/shared/models/question.model';
 
 @Component({
     selector: 'app-question-bog-standard',

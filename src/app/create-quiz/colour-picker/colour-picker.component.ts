@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QuizService } from 'src/app/shared/quiz.service';
+import { QuizService } from 'src/app/shared/services/quiz.service';
 
 @Component({
   selector: 'app-colour-picker',

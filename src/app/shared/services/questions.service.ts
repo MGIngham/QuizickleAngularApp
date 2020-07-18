@@ -1,6 +1,6 @@
-import { Question } from './question.model';
+import { Question } from '../models/question.model';
 import { EventEmitter } from '@angular/core';
-import { Round } from './round.model';
+import { Round } from '../models/round.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -15,13 +15,10 @@ export class QuestionsService {
 
     questions: Question[] = [];
     questionsReferenceArray = new EventEmitter<Question[]>();
-    rounds: Round[] = [];
-    roundsReferenceArray = new EventEmitter<Round[]>();
     questionId: number = 1;
     quizId: number;
     questionSaved = new EventEmitter<boolean>();
     questionSavedBool = false;
-    roundNumber: number = 0;
     currentRoundId: number;
     questionIndex: number = 1;
     currentQuestionIndex = new EventEmitter<number>();
@@ -68,18 +65,6 @@ export class QuestionsService {
         this.questionSavedBool = !this.questionSavedBool;
         this.questionSaved.emit(this.questionSavedBool);
         this.questionsReferenceArray.emit(this.questions.slice());
-    }
-
-    addRound(){
-        let r: Round;
-        this.roundNumber = this.roundNumber += 1;
-        r = new Round(this.roundNumber, "");
-        this.rounds.push(r);
-        this.roundsReferenceArray.emit(this.rounds.slice());
-    }
-
-    nameRound(id: number, name: string){
-      this.rounds[id].roundName = name;
     }
 
     getNextQuestion(){

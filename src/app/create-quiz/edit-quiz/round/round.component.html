@@ -1,5 +1,5 @@
 <div>
-    <div class="round-border" *ngFor="let round of rounds">
+    <div class="round-border" *ngFor="let round of rounds; let i = index">
         <div class="row">
             <div class="col-xs-3">
                 <label>Round: {{round.roundId}}</label>
@@ -10,11 +10,11 @@
                         <input type='text'
                                 class="form-control"
                                 placeholder="Round name"
-                                #roundNameRef>
+                                [(ngModel)]="roundNameInput[i]">
                     </div>
                     <div class="col-xs-4 round-header-item">
                         <button class="btn"
-                               (click)="updateRoundName(round.roundId)">
+                               (click)="updateRoundName(i)">
                                S
                         </button>
                     </div>
@@ -22,7 +22,7 @@
             </div>
             <div class="col-xs-3">
                 <button class="btn" 
-                        (click)="showQuestionComponent()">
+                        (click)="showQuestionComponent();updateCurrentRoundId(round.roundId)">
                         Add question +
                 </button>
             </div>
@@ -37,7 +37,7 @@
                         <div>
                             <ul class="" 
                                 *ngFor="let question of questions">
-                                    <li *ngIf="question.roundNumber === round.roundId">
+                                    <li *ngIf="question.roundNumber == 1">
                                         <a href="#">{{question.questionString}}</a>
                                     </li>
                             </ul>
