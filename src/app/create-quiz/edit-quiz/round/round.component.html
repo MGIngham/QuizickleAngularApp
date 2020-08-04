@@ -1,10 +1,13 @@
-<div>
-    <div class="round-border" *ngFor="let round of rounds; let i = index">
+
+    <div class="round-border round-div" *ngFor="let round of rounds; let i = index"> 
         <div class="row">
+
             <div class="col-xs-3">
                 <label>Round: {{round.roundId}}</label>
             </div>
+
             <div class="col-xs-5">
+
                 <div class="row">
                     <div class="col-xs-8 round-header-item">
                         <input type='text'
@@ -12,38 +15,49 @@
                                 placeholder="Round name"
                                 [(ngModel)]="roundNameInput[i]">
                     </div>
+
                     <div class="col-xs-4 round-header-item">
-                        <button class="btn"
+                        <button class="btn name-btn"
                                (click)="updateRoundName(i)">
-                               S
+                               +
                         </button>
                     </div>
                 </div>
+
             </div>
+
             <div class="col-xs-3">
                 <button class="btn" 
                         (click)="showQuestionComponent();updateCurrentRoundId(round.roundId)">
                         Add question +
                 </button>
             </div>
-            </div>
+
+            
         </div>
+
         <div class="row">
+
             <div class="col-xs-7">
-                    <button class="btn" type="button" (click)="round.showQuestions = true">
-                        <span class="caret"></span></button>
-                    <button class="btn" type="button"  (click)="round.showQuestions = false">
+
+                    <button class="btn" type="button" (click)="showQuestions = true">
+                    <span class="caret"></span></button>
+
+                    <button class="btn" type="button"  (click)="showQuestions = false">
                         <span class="dropup"><span class="caret"></span></span></button>
-                        <div>
+
+                        <div *ngIf="showQuestions">
                             <ul class="" 
                                 *ngFor="let question of questions">
-                                    <li *ngIf="question.roundNumber == 1">
+                                    <li *ngIf="round.roundId == question.roundNumber">
                                         <a href="#">{{question.questionString}}</a>
                                     </li>
                             </ul>
                         </div>
                  
-            </div>   
+            </div> 
+            
+        </div>
+
     </div>
-<div>
 

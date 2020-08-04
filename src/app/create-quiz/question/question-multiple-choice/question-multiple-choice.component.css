@@ -8,10 +8,15 @@ label{
 
 #save-question-btn{
     float: right;
+    margin-bottom: 20px;
 }
 
 .btn-grn{
     background-color: #2f8524;
+}
+
+.btn-holder{
+    background-color: #ffffff;
 }
 
 

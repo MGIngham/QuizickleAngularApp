@@ -5,7 +5,8 @@ import { Round } from 'src/app/shared/models/round.model';
 import { AnswerService } from 'src/app/shared/services/answer.service';
 import { Answer } from 'src/app/shared/models/answer.model';
 import { Observable } from 'rxjs';
-import { Console } from 'console';
+import { ActivatedRoute, Params } from '@angular/router';
+import { RoundService } from 'src/app/shared/services/round.service';
 
 @Component({
   selector: 'app-play-question',
@@ -15,7 +16,11 @@ import { Console } from 'console';
 export class PlayQuestionComponent implements AfterViewInit {
 
   questionsByQuizId$: Observable<Question[]>;
+  roundsByQuizId$: Observable<Round[]>;
 
+  question: Question;
+
+  quizId: number;
   questionsArray: Question[];
   answersArray: Answer[];
   rounds: Round[];
@@ -30,17 +35,26 @@ export class PlayQuestionComponent implements AfterViewInit {
   questionsArrayLength: number;
   @ViewChild("answerText") answerString: ElementRef;
 
-
-  testNum: number;
-
   constructor(private questionService: QuestionsService,
-    private answerService: AnswerService) { }
+    private answerService: AnswerService,
+    private roundService: RoundService,
+    private route: ActivatedRoute) { }
 
+  ngOnInit() {
+
+    this.quizId = +this.route.snapshot.params['id'];
+    this.route.params
+    .subscribe(
+      (params: Params) => {
+        this.quizId = +params.id;
+      }
+    );
+  }
 
   ngAfterViewInit() {
 
     //let questionsArrayLength;
-    this.questionsByQuizId$ = this.questionService.getQuestionsByQuizId(this.questionService.quizId);
+    this.questionsByQuizId$ = this.questionService.getQuestionsByQuizId(this.quizId);
 
     this.questionsByQuizId$
     .subscribe(
@@ -50,6 +64,15 @@ export class PlayQuestionComponent implements AfterViewInit {
         this.maxNumberOfQuestion = this.questionsArrayLength + 1;
       }
     );
+
+    this.question = this.questionsArray[0];
+
+    this.roundsByQuizId$
+    .subscribe(
+      (rounds: Round[]) => {
+        this.rounds = rounds;
+      }
+    )
 
     this.answerService.answersReferenceArray
     .subscribe(
@@ -62,6 +85,7 @@ export class PlayQuestionComponent implements AfterViewInit {
 
   moveToNextQuestion(){
     this.currentQuestionId = this.questionService.getNextQuestion();
+    this.question = this.questionsArray[this.currentQuestionId];
   }
 
   addAnswer(roundId: number, 

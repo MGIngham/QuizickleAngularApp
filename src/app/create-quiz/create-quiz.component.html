@@ -1,15 +1,15 @@
 <div class="row">
-    <div class="container-fluid">
+    <div class="container-fluid" [ngStyle]="{'background-color': backgroundColour}">
         
         <div *ngIf="questions?.length > 0">
-            <a routerLink="/play-quiz">
+            <a (click)="navigateToQuiz()">
                 <button class="btn btn-lg btn-primary">Play quiz</button>
             </a>
         </div>
 
         <div class="col-xs-6">
             <div class="row">
-                <app-round></app-round>
+                <app-round [quizId]="quizId"></app-round>
             </div>
             <button class="btn" (click)="addNewRound()">New round</button>
         </div>

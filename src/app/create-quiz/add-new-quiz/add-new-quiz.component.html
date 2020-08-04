@@ -21,7 +21,6 @@
     <div class="col-xs-2">
         <a routerLink="/create-quiz"><button class="btn btn-primary" (click)="addNewQuiz()">Create quiz</button></a>
     </div>
-    <div *ngIf="colourPickerSelected">
-        <app-colour-picker></app-colour-picker>
+    <div *ngIf="colourPickerSelected == true">
+        <app-colour-picker (closeColourPicker)="colourPickerSelected = false"></app-colour-picker>
     </div>
-</div>

@@ -1,10 +1,11 @@
 export class Round {
     roundId: number;
     roundName: string;
-    showQuestions: boolean = false;
+    quizId: number;
 
-    constructor(id: number, name: string){
+    constructor(id: number, name: string, quizId: number){
         this.roundId = id;
         this.roundName = name;
+        this.quizId = quizId;
     }
 }

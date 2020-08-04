@@ -4,6 +4,7 @@ import { retry, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { RoundService } from './round.service';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +15,7 @@ export class QuizService {
     quiz: Quiz;
     quizReference = new EventEmitter<Quiz>();
     quizIdReference = new EventEmitter<number>();
-    backgroundColour: string;
+    backgroundColour: string = '#3cb371';
 
     quizickleAppUrl: string;
     quizickleServiceApiUrl: string;

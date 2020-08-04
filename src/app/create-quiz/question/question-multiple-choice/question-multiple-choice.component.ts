@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
 import { Question } from 'src/app/shared/models/question.model';
 import { QuestionsService } from 'src/app/shared/services/questions.service';
+import { RoundService } from 'src/app/shared/services/round.service';
 
 @Component({
     selector: 'app-question-multiple-choice',
@@ -22,7 +23,8 @@ export class QuestionMultipleChoiceComponent implements OnInit {
 
     correctAnswerIndex: number;
 
-    constructor(private questionService: QuestionsService){}
+    constructor(private questionService: QuestionsService,
+        private roundService: RoundService){}
 
     ngOnInit(){
 
@@ -66,6 +68,9 @@ export class QuestionMultipleChoiceComponent implements OnInit {
       );
 
         this.questionService.addQuestion(this.question);
+
+        this.roundService.showQuestionComponent.emit(false);
+
 
     }
 

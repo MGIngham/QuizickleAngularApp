@@ -24,13 +24,18 @@ import { QuizService } from './shared/services/quiz.service';
 import { HomeComponent } from './home/home.component';
 import { ColourPickerComponent } from './create-quiz/colour-picker/colour-picker.component';
 import { RoundService } from './shared/services/round.service';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { HttpService } from './shared/services/http.service';
 
  
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'new-quiz', component: AddNewQuizComponent},
   {path: 'create-quiz', component: CreateQuizComponent},
-  {path: 'play-quiz', component: QuizContainerComponent}
+  {path: 'play-quiz', component: QuizContainerComponent},
+  {path: 'play-quiz/:id', component: QuizContainerComponent},
+  {path: 'not-found', component: NotFoundComponent},
+  {path: '**', redirectTo: 'not-found'}
 ]
 
 @NgModule({
@@ -49,7 +54,8 @@ const appRoutes: Routes = [
     DisplayAnswersComponent,
     AddNewQuizComponent,
     HomeComponent,
-    ColourPickerComponent
+    ColourPickerComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +64,11 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
-    QuestionsService,AnswerService,QuizService,RoundService],
+    QuestionsService,
+    AnswerService,
+    QuizService,
+    RoundService,
+    HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

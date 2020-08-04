@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { QuizService } from 'src/app/shared/services/quiz.service';
 
 @Component({
@@ -8,6 +8,8 @@ import { QuizService } from 'src/app/shared/services/quiz.service';
 })
 export class ColourPickerComponent implements OnInit {
 
+  @Output() closeColourPicker = new EventEmitter<boolean>();
+
   constructor(private quizService: QuizService) { }
 
   ngOnInit(): void {
@@ -15,6 +17,7 @@ export class ColourPickerComponent implements OnInit {
 
   addBackgroundColour(colour: string){
     this.quizService.backgroundColour = colour;
+    this.closeColourPicker.emit();
   }
 
 }

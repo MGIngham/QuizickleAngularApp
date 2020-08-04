@@ -1,6 +1,6 @@
 <div>
 
-    <div *ngIf="startQuiz">
+    <div *ngIf="!startQuiz">
         <div class="form-group-row">
             <label class="col-xs-2 col-form-label">Player name:</label>
             <div class="col-xs-4">
@@ -10,7 +10,7 @@
             <button id="save-question-btn" 
                     type="submit" 
                     class="btn btn-primary btn-lg"
-                    (click)="startQuiz = false">
+                    (click)="startQuiz">
                     Start quiz
                 </button>
             
@@ -20,7 +20,7 @@
     <div class="col-lg-4">
 
     </div>
-    <div class="col-lg-8 container">
+    <div class="col-lg-8 container" *ngIf="startQuiz">
         <app-play-question></app-play-question>
     </div>
     <div class="col-lg-2">

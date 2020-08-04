@@ -10,3 +10,11 @@ li{
     background-color: rgb(230, 246, 252);
 }
 
+.questions-div{
+    background-color: #ffffff;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 70px;
+    margin-top: 15px;
+}
+

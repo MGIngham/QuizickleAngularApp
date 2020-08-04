@@ -1,12 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef, Output } from '@angular/core';
 import { QuestionsService } from '../shared/services/questions.service';
-import { Round } from '../shared/models/round.model';
-import { Question } from '../shared/models/question.model';
-import { EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Question } from '../shared/models/question.model'
 import { QuizService } from '../shared/services/quiz.service';
-import { Quiz } from '../shared/models/quiz.model';
 import { RoundService } from '../shared/services/round.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-create-quiz',
@@ -19,10 +16,13 @@ export class CreateQuizComponent implements OnInit {
     questions: Question[];
     enablePlayButton: boolean = true;
     showNewQuestionComponent: boolean;
+    backgroundColour: string;
+    quizId: number;
 
     constructor(private questionService: QuestionsService, 
         private quizService: QuizService,
-        private roundService: RoundService){}
+        private roundService: RoundService,
+        private router: Router){}
 
     ngOnInit(){
 
@@ -33,6 +33,8 @@ export class CreateQuizComponent implements OnInit {
             }
         );
 
+        this.roundService.showQuestionComponent.emit(false);    
+
         this.roundService.showQuestionComponent
         .subscribe(
             (show: boolean) => {
@@ -40,18 +42,22 @@ export class CreateQuizComponent implements OnInit {
             }
         )
 
+        this.backgroundColour = this.quizService.backgroundColour;
+        this.quizId = this.questionService.quizId;
     }
 
     ngOnChange(){
         this.enablePlayButton = (this.questions.length > 0) ? true : false;
     }
 
-    expandQuestionsForRound(show: Round){
-        show.showQuestions != show.showQuestions;;
+    addNewRound(){
+        let q = this.questionService.quizId;
+        this.roundService.addRound(q);
     }
 
-    addNewRound(){
-        this.roundService.addRound();
+    navigateToQuiz(){
+        let quizId: number = this.questionService.quizId;
+        this.router.navigate(['play-quiz',quizId]);
     }
 
 

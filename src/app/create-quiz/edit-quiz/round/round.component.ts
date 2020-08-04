@@ -3,6 +3,7 @@ import { QuestionsService } from 'src/app/shared/services/questions.service';
 import { Question } from 'src/app/shared/models/question.model';
 import { Round } from 'src/app/shared/models/round.model';
 import { RoundService } from 'src/app/shared/services/round.service';
+import { QuizService } from 'src/app/shared/services/quiz.service';
 
 @Component({
   selector: 'app-round',
@@ -13,8 +14,12 @@ export class RoundComponent implements OnInit {
 
   questions: Question[];
 
+  
+  @Input() quizId: number;
+  help: string = "What the fuck!";
   showNewQuestionComponent: boolean = false;
   addRoundButtonClicked: boolean = false;
+  showQuestions: boolean = false;
   round: number;
   roundIdForQuestion: number;
   roundId: number;
@@ -30,7 +35,8 @@ export class RoundComponent implements OnInit {
   thisRoundId: number;
 
   constructor(private questionService: QuestionsService,
-    private roundService: RoundService) { }
+    private roundService: RoundService,
+    private quizService: QuizService) {}
 
   ngOnInit() {
 
@@ -55,8 +61,15 @@ export class RoundComponent implements OnInit {
       }
     )
 
-    this.roundService.addRound();
-    this.roundService.showQuestionComponent.emit(true);    
+    this.quizService.quizIdReference
+    .subscribe(
+      (quizId: number) => {
+        this.quizId = quizId;
+        this.roundService.addRound(quizId);
+      }
+    )
+    
+
 
   }
 

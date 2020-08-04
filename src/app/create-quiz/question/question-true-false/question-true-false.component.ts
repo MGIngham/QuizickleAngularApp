@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Question } from 'src/app/shared/models/question.model';
 import { QuestionsService } from 'src/app/shared/services/questions.service';
+import { RoundService } from 'src/app/shared/services/round.service';
+import { QuizService } from 'src/app/shared/services/quiz.service';
 
 @Component({
     selector: 'app-question-true-false',
@@ -11,6 +13,7 @@ import { QuestionsService } from 'src/app/shared/services/questions.service';
 export class QuestionTrueFalseComponent implements OnInit {
 
     questionTypeId: number = 2;
+    backgroundColour: string;
 
     @ViewChild('questionText') questionText: ElementRef;
 
@@ -24,10 +27,12 @@ export class QuestionTrueFalseComponent implements OnInit {
     porperty instead of creating a fresh propert on the Question model.*/
     correctAnswerIndex: number;
 
-    constructor(private questionService: QuestionsService){}
+    constructor(private questionService: QuestionsService,
+        private roundService: RoundService,
+        private quizService: QuizService){}
 
     ngOnInit(){
-
+        this.backgroundColour = this.quizService.backgroundColour;
     }
 
     isCorrectAnswer(answerIndex: number){
@@ -57,6 +62,9 @@ export class QuestionTrueFalseComponent implements OnInit {
               console.log(res);
             }
         );
+
+        this.roundService.showQuestionComponent.emit(false);
+
     }
 
 }
