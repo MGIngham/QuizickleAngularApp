@@ -13,7 +13,7 @@ import { RoundService } from 'src/app/shared/services/round.service';
   templateUrl: './play-question.component.html',
   styleUrls: ['./play-question.component.css']
 })
-export class PlayQuestionComponent implements AfterViewInit {
+export class PlayQuestionComponent {
 
   questionsByQuizId$: Observable<Question[]>;
   roundsByQuizId$: Observable<Round[]>;
@@ -26,7 +26,7 @@ export class PlayQuestionComponent implements AfterViewInit {
   rounds: Round[];
   answer: Answer;
   questionText: string;
-  currentQuestionId: number = 1;
+  currentQuestionId: number = 0;
   currentQuestion: Question;
   isTrueOrFalse: boolean;
   playerId: number = 1;
@@ -49,12 +49,11 @@ export class PlayQuestionComponent implements AfterViewInit {
         this.quizId = +params.id;
       }
     );
-  }
-
-  ngAfterViewInit() {
 
     //let questionsArrayLength;
     this.questionsByQuizId$ = this.questionService.getQuestionsByQuizId(this.quizId);
+    this.roundsByQuizId$ = this.roundService.getRoundsByQuizId(this.quizId);
+
 
     this.questionsByQuizId$
     .subscribe(
@@ -62,10 +61,9 @@ export class PlayQuestionComponent implements AfterViewInit {
         this.questionsArray = questions;
         this.questionsArrayLength = this.questionsArray.length;
         this.maxNumberOfQuestion = this.questionsArrayLength + 1;
+        this.question = this.questionsArray[this.currentQuestionId];
       }
     );
-
-    this.question = this.questionsArray[0];
 
     this.roundsByQuizId$
     .subscribe(

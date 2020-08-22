@@ -3,7 +3,7 @@ import { EventEmitter } from '@angular/core';
 import { Round } from '../models/round.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, Subject } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { QuizService } from './quiz.service';
@@ -14,7 +14,7 @@ import { QuizService } from './quiz.service';
 export class QuestionsService {
 
     questions: Question[] = [];
-    questionsReferenceArray = new EventEmitter<Question[]>();
+    questionsReferenceArray = new Subject<Question[]>();
     questionId: number = 1;
     quizId: number;
     questionSaved = new EventEmitter<boolean>();
@@ -64,7 +64,7 @@ export class QuestionsService {
         this.questions.push(question);
         this.questionSavedBool = !this.questionSavedBool;
         this.questionSaved.emit(this.questionSavedBool);
-        this.questionsReferenceArray.emit(this.questions.slice());
+        this.questionsReferenceArray.next(this.questions.slice());
     }
 
     getNextQuestion(){

@@ -1,14 +1,14 @@
-import { EventEmitter } from '@angular/core';
 import { Answer } from '../models/answer.model';
 import { QuestionsWithAnswers } from '../models/questions-with-answers.model';
 import { Question } from '../models/question.model';
+import { Subject } from 'rxjs';
 
 export class AnswerService {
 
     answers: Answer[] = [];
     questionsWithAnswers: QuestionsWithAnswers[] = []
-    answersReferenceArray = new EventEmitter<Answer[]>();
-    questionAnswerReferenceArray = new EventEmitter<QuestionsWithAnswers[]>();
+    answersReferenceArray = new Subject<Answer[]>();
+    questionAnswerReferenceArray = new Subject<QuestionsWithAnswers[]>();
 
     /*playerId: number;
     roundId: number;
@@ -20,7 +20,7 @@ export class AnswerService {
     addAnswer(answer: Answer){
 
         this.answers.push(answer);
-        this.answersReferenceArray.emit(this.answers.slice());
+        this.answersReferenceArray.next(this.answers.slice());
 
     }
 
@@ -28,7 +28,7 @@ export class AnswerService {
         
         let questionAndAnswer = new QuestionsWithAnswers(question, answer)
         this.questionsWithAnswers.push(questionAndAnswer);
-        this.questionAnswerReferenceArray.emit(this.questionsWithAnswers.slice());
+        this.questionAnswerReferenceArray.next(this.questionsWithAnswers.slice());
     }
 
 }
