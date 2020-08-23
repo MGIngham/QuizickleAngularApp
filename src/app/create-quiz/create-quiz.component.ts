@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef, Output } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output, OnDestroy } from '@angular/core';
 import { QuestionsService } from '../shared/services/questions.service';
 import { Question } from '../shared/models/question.model'
 import { QuizService } from '../shared/services/quiz.service';
 import { RoundService } from '../shared/services/round.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-create-quiz',
@@ -11,8 +12,9 @@ import { Router } from '@angular/router';
     styleUrls: ['./create-quiz.component.css']
 })
 
-export class CreateQuizComponent implements OnInit {
+export class CreateQuizComponent implements OnInit, OnDestroy {
 
+    private questionsSubscription: Subscription;
     questions: Question[];
     enablePlayButton: boolean = true;
     showNewQuestionComponent: boolean;
@@ -26,7 +28,7 @@ export class CreateQuizComponent implements OnInit {
 
     ngOnInit(){
 
-        this.questionService.questionsReferenceArray
+        this.questionsSubscription = this.questionService.questionsReferenceArray
         .subscribe(
             (questions: Question[]) => {
                 this.questions = questions;
@@ -48,6 +50,10 @@ export class CreateQuizComponent implements OnInit {
 
     ngOnChange(){
         this.enablePlayButton = (this.questions.length > 0) ? true : false;
+    }
+
+    ngOnDestroy(){
+        this.questionsSubscription.unsubscribe();
     }
 
     addNewRound(){

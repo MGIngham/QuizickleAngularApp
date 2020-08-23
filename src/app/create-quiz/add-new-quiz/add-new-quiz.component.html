@@ -4,14 +4,21 @@
         <div class="row">
             <div class="col-xs-5">
                 <label>Quiz name:</label>
-                <input type="text" #quizNameInput>
+                <input type="text" 
+                    #quizNameInput 
+                    [(ngModel)]="nameInputNullCheck"
+                    (ngModelChange)="enableButton()">
             </div>
         </div>
+        {{nameInputNullCheck}}
         <div class="row">
             <div class="col-xs-5">
                 <br/>
                 <label>Background colour:</label>
-                <a (click)="colourPickerSelected = true"><img alt="colour-picker-icon" src="/src/assets/images/icons8-color-wheel-40.png"></a>
+                <a (click)="colourPickerSelected = true">
+                    <img alt="colour-picker-icon" 
+                    src="/src/assets/images/icons8-color-wheel-40.png">
+                </a>
             </div>
         </div>
     </div>
@@ -19,7 +26,14 @@
 <div class="row">
     <br/>
     <div class="col-xs-2">
-        <a routerLink="/create-quiz"><button class="btn btn-primary" (click)="addNewQuiz()">Create quiz</button></a>
+        <a>
+            <button 
+                class="btn btn-primary" 
+                (click)="addNewQuiz()"
+                [disabled]="enableCreateQuizButton">
+                Create quiz
+            </button>
+    </a>
     </div>
     <div *ngIf="colourPickerSelected == true">
         <app-colour-picker (closeColourPicker)="colourPickerSelected = false"></app-colour-picker>

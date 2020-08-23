@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -26,17 +25,7 @@ import { ColourPickerComponent } from './create-quiz/colour-picker/colour-picker
 import { RoundService } from './shared/services/round.service';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpService } from './shared/services/http.service';
-
- 
-const appRoutes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'new-quiz', component: AddNewQuizComponent},
-  {path: 'create-quiz', component: CreateQuizComponent},
-  {path: 'play-quiz', component: QuizContainerComponent},
-  {path: 'play-quiz/:id', component: QuizContainerComponent},
-  {path: 'not-found', component: NotFoundComponent},
-  {path: '**', redirectTo: 'not-found'}
-]
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -61,7 +50,7 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    AppRoutingModule
   ],
   providers: [
     QuestionsService,

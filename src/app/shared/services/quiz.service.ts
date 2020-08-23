@@ -1,7 +1,7 @@
 import { Quiz } from '../models/quiz.model';
 import { EventEmitter, Injectable } from '@angular/core';
 import { retry, catchError } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { RoundService } from './round.service';

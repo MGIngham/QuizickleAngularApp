@@ -13,9 +13,11 @@ import { Subscription } from 'rxjs';
 })
 export class RoundComponent implements OnInit, OnDestroy {
 
-  questions: Question[];
-  private subscription: Subscription;
+  private questionsSubscription: Subscription;
+  private roundsSubscription: Subscription;
   
+  questions: Question[];
+
   @Input() quizId: number;
   help: string = "What the fuck!";
   showNewQuestionComponent: boolean = false;
@@ -48,14 +50,14 @@ export class RoundComponent implements OnInit, OnDestroy {
         }
     );
 
-    this.roundService.roundsReferenceArray
+    this.roundsSubscription = this.roundService.roundsReferenceArray
     .subscribe(
         (rounds: Round[]) => {
             this.rounds = rounds;
         }
     );
 
-    this.subscription = this.questionService.questionsReferenceArray
+    this.questionsSubscription = this.questionService.questionsReferenceArray
     .subscribe(
       (questions: Question[]) => {
         this.questions = questions
@@ -73,7 +75,8 @@ export class RoundComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    this.subscription.unsubscribe();
+    this.questionsSubscription.unsubscribe();
+    this.roundsSubscription.unsubscribe();
   }
 
   updateRoundName(id: number){
