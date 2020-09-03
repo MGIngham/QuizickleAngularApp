@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { QuizService } from 'src/app/shared/services/quiz.service';
 import { Quiz } from 'src/app/shared/models/quiz.model';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-new-quiz',
@@ -9,6 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-new-quiz.component.css']
 })
 export class AddNewQuizComponent implements OnInit {
+
+  newQuiz: FormGroup;
 
   colourPickerSelected: boolean = false;
   quiz: Quiz;
@@ -19,6 +22,12 @@ export class AddNewQuizComponent implements OnInit {
   constructor(private quizService: QuizService, private router: Router) { }
 
   ngOnInit(): void {
+
+    this.newQuiz = new FormGroup({
+      "quizName": new FormControl(null, Validators.required),
+      "quizColour": new FormGroup(null)
+    });
+
     this.quizService.quizReference
     .subscribe(
         (quiz: Quiz) => {

@@ -9,6 +9,16 @@ import { QuizService } from 'src/app/shared/services/quiz.service';
 export class ColourPickerComponent implements OnInit {
 
   @Output() closeColourPicker = new EventEmitter<boolean>();
+  @Output() colour = new EventEmitter<string>();
+
+  colours: string[] = [
+    "#ff9933",
+    "#ff3300",
+    "#00cc00",
+    "#0066ff",
+    "#d680f0",
+    "#ffff00"
+  ];
 
   constructor(private quizService: QuizService) { }
 
@@ -16,7 +26,7 @@ export class ColourPickerComponent implements OnInit {
   }
 
   addBackgroundColour(colour: string){
-    this.quizService.backgroundColour = colour;
+    this.colour.emit(colour);
     this.closeColourPicker.emit();
   }
 

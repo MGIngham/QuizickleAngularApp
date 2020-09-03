@@ -10,7 +10,6 @@
                     (ngModelChange)="enableButton()">
             </div>
         </div>
-        {{nameInputNullCheck}}
         <div class="row">
             <div class="col-xs-5">
                 <br/>
@@ -37,4 +36,19 @@
     </div>
     <div *ngIf="colourPickerSelected == true">
         <app-colour-picker (closeColourPicker)="colourPickerSelected = false"></app-colour-picker>
+    </div>
+
+    <div>
+        <form [formGroup]="newQuiz" (ngSubmit)="addNewQuiz()">
+            <div>
+                <label>Quiz name:</label>
+                <input type="text">    
+            </div>
+            <div>
+                <button
+                type="submit"
+                class="btn btn-primary">Create</button>
+            </div>
+            
+        </form>
     </div>
